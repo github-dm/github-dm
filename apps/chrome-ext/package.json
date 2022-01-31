@@ -42,6 +42,9 @@
     ]
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.177"
+    "@types/chrome": "^0.0.177",
+    "autoprefixer": "^10.4.2",
+    "postcss": "^8.4.5",
+    "tailwindcss": "^3.0.18"
   }
 }
