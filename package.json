@@ -5,11 +5,21 @@
     "@typescript-eslint/parser": "^5.10.1",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1",
     "typescript": "^4.5.5"
   },
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "lint": "yarn lint:eslint && yarn lint:prettier",
+    "lint:eslint": "eslint packages/**/src apps/**/src --ext ts,tsx -c ./.eslintrc.js",
+    "lint:prettier": "prettier --no-error-on-unmatched-pattern --check apps/**/**.{ts,tsx} packages/**/**.{ts,tsx}",
+    "fix": "yarn fix:eslint && yarn fix:prettier",
+    "fix:eslint": "eslint --fix packages/**/src apps/**/src --ext ts,tsx -c ./.eslintrc.js",
+    "fix:prettier": "prettier --no-error-on-unmatched-pattern --write apps/**/**.{ts,tsx} packages/**/**.{ts,tsx}",
+    "compile": "tsc "
+  }
 }

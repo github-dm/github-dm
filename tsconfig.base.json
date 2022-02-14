@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@github-dm/messaging": ["./messaging"]
+      "@github-dm/*": ["./packages/*"]
     },
     "composite": true,
     "allowUnreachableCode": false,
