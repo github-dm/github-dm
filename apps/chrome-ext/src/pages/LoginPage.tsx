@@ -1,59 +1,78 @@
-import { useState, useEffect } from "react";
-import { useNavigator, ScreenHelmet } from "@karrotframe/navigator";
-import ThemeService from "@services/theme.service";
-import { Button } from "@UI";
+import React from "react";
+import { ScreenHelmet, useNavigator } from "@karrotframe/navigator";
+import { Box, Button, DropdownButton, DropdownMenu } from "@primer/react";
+import { useColorScheme } from "@contexts/ColorScheme.context";
+import { ColorScheme } from "@services/color-scheme.service";
+import { MarkGithubIcon } from "@primer/octicons-react";
 
 function LoginPage() {
-  const theme = ThemeService.getTheme();
   const { push } = useNavigator();
-  const [darkEnabled, setDarkEnabled] = useState(false);
-
-  useEffect(() => {
-    setDarkEnabled(ThemeService.getTheme() !== "light");
-  }, []);
 
   return (
     <div className="h-full p-[1rem]">
-      <ScreenHelmet title="" />
-      <SwitchTest
-        checked={darkEnabled}
-        setChecked={(val) => {
-          ThemeService.setCustomTheme(val ? "dark" : "light");
-          setDarkEnabled(val);
-        }}
-      />
-      <h1 className="text-3xl font-bold mb-5">Github DM</h1>
-      <Button onClick={() => push("/list")} color="black">
-        <img
-          src={`/images/github/Github-Mark-${theme}-32px.png`}
-          alt="github logo"
-        />
-        <p className="w-full text-center ">Sign in with Github</p>
-      </Button>
+      <ScreenHelmet title="Github DM" />
+      <Box flexDirection={"column"} p={3}>
+        <Box display={"flex"} flex={1} justifyContent={"flex-end"}>
+          <SchemeSelector />
+        </Box>
+        <Box display={"flex"} justifyContent={"center"}>
+          <Button onClick={() => push("/list")}>
+            <Box display={"flex"} alignItems={"center"}>
+              <Box mr={2}>
+                <MarkGithubIcon size={32} />
+              </Box>
+              <p className="w-full text-center ">Sign in with Github</p>
+            </Box>
+          </Button>
+        </Box>
+      </Box>
     </div>
   );
 }
 
-const SwitchTest: React.FC<{
-  checked: boolean;
-  setChecked: (val: boolean) => void;
-}> = ({ checked, setChecked }) => {
+type SchemeItem = {
+  selected: boolean;
+  text: ColorScheme | "system";
+  id: number;
+};
+const SchemeSelector: React.FC = () => {
+  const { colorMode, setColorMode } = useColorScheme();
+  const items: SchemeItem[] = [
+    {
+      selected: !colorMode.systemEnabled && colorMode.scheme === "light",
+      text: "light",
+      id: 1
+    },
+    {
+      selected: !colorMode.systemEnabled && colorMode.scheme === "dark",
+      text: "dark",
+      id: 2
+    },
+    {
+      selected: colorMode.systemEnabled,
+      text: "system",
+      id: 3
+    }
+  ];
+
   return (
-    <label className={"flex relative cursor-pointer"}>
-      <input
-        checked={checked}
-        onChange={(e) => setChecked(e.target.checked)}
-        className={"peer hidden"}
-        type={"checkbox"}
-        role={"switch"}
+    <>
+      <DropdownMenu
+        renderAnchor={({ children, "aria-labelledby": ariaLabelledBy, ...anchorProps }) => (
+          <DropdownButton aria-labelledby={`favorite-color-label ${ariaLabelledBy}`} {...anchorProps}>
+            {children}
+          </DropdownButton>
+        )}
+        placeholder="🎨"
+        items={items}
+        selectedItem={items.find(item => item.selected)}
+        onChange={item => {
+          if (!item) return;
+          if (item.text === "system") setColorMode(true);
+          else setColorMode(false, item.text as ColorScheme);
+        }}
       />
-      <span className={"bg-blue-300 px-6 py-3 rounded-full"} />
-      <span
-        className={
-          "absolute transition left-0 bg-blue-100 p-3 rounded-full peer-checked:translate-x-6 peer-checked:bg-blue-500"
-        }
-      />
-    </label>
+    </>
   );
 };
 

@@ -5,6 +5,6 @@
 html,
 body,
 #root {
-  min-width: 380px;
+  min-width: 300px;
   height: 100%;
 }
