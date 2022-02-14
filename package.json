@@ -11,5 +11,14 @@
   "workspaces": [
     "apps/*",
     "packages/*"
-  ]
+  ],
+  "scripts": {
+    "lint": "yarn lint:eslint && yarn lint:prettier",
+    "lint:eslint": "eslint packages/**/src apps/**/src --ext ts,tsx -c ./.eslintrc.js",
+    "lint:prettier": "prettier --check apps/**/src/**/*.{ts,tsx} packages/**/src/**/*.ts",
+    "fix": "yarn fix:eslint && yarn fix:prettier",
+    "fix:eslint": "eslint --fix packages/**/src apps/**/src --ext ts,tsx -c ./.eslintrc.js",
+    "fix:prettier": "prettier --write apps/**/src/**/*.{ts,tsx} packages/**/src/**/*.ts",
+    "compile": "tsc "
+  }
 }

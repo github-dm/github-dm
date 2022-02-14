@@ -1,6 +1,5 @@
 import { Navigator, Screen } from "@karrotframe/navigator";
 import { fetchMessage } from "@github-dm/messaging";
-
 import LoginPage from "./pages/LoginPage";
 import ListPage from "./pages/ListPage";
 
