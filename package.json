@@ -16,10 +16,10 @@
   "scripts": {
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "lint:eslint": "eslint packages/**/src apps/**/src --ext ts,tsx -c ./.eslintrc.js",
-    "lint:prettier": "prettier --no-error-on-unmatched-pattern --check apps/**/**.{ts,tsx} packages/**/**.{ts,tsx}",
+    "lint:prettier": "prettier --no-error-on-unmatched-pattern --check \"apps/*/src/**/*.{ts,tsx}\" \"packages/*/src/**/*.{ts,tsx}\"",
     "fix": "yarn fix:eslint && yarn fix:prettier",
     "fix:eslint": "eslint --fix packages/**/src apps/**/src --ext ts,tsx -c ./.eslintrc.js",
-    "fix:prettier": "prettier --no-error-on-unmatched-pattern --write apps/**/**.{ts,tsx} packages/**/**.{ts,tsx}",
-    "compile": "tsc "
+    "fix:prettier": "prettier --no-error-on-unmatched-pattern --write \"apps/*/src/**/*.{ts,tsx}\" \"packages/*/src/**/*.{ts,tsx}\"",
+    "compile": "tsc"
   }
 }
