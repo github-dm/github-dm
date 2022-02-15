@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ScreenHelmet, useNavigator } from "@karrotframe/navigator";
 import { Box, Button, DropdownButton, DropdownMenu } from "@primer/react";
 import { useColorScheme } from "@contexts/ColorScheme.context";
 import { ColorScheme } from "@services/color-scheme.service";
 import { MarkGithubIcon } from "@primer/octicons-react";
+import { Auth } from "@github-dm/firebase";
+import Page from "@components/Page";
 
 function LoginPage() {
   const { push } = useNavigator();
 
   return (
-    <div className="h-full p-[1rem]">
+    <Page>
       <ScreenHelmet title="Github DM" />
       <Box flexDirection={"column"} p={3}>
         <Box display={"flex"} flex={1} justifyContent={"flex-end"}>
           <SchemeSelector />
         </Box>
         <Box display={"flex"} justifyContent={"center"}>
-          <Button onClick={() => push("/list")}>
+          <Button
+            onClick={async () => {
+              await Auth.signIn();
+              await push("/list");
+            }}
+          >
             <Box display={"flex"} alignItems={"center"}>
               <Box mr={2}>
                 <MarkGithubIcon size={32} />
@@ -26,7 +33,7 @@ function LoginPage() {
           </Button>
         </Box>
       </Box>
-    </div>
+    </Page>
   );
 }
 

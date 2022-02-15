@@ -1,5 +1,5 @@
 const cracoAlias = require("craco-alias");
-const cracoEsbuild = require("craco-esbuild");
+const { ESBuildMinifyPlugin } = require("esbuild-loader");
 const { getLoader, loaderByName } = require("@craco/craco");
 
 const path = require("path");
@@ -15,11 +15,17 @@ const absolutePaths = [
 module.exports = {
   webpack: {
     configure: config => {
+      // Inject monorepo packages
       const { isFound, match } = getLoader(config, loaderByName("babel-loader"));
       if (isFound) {
         match.loader.include = Array.from(new Set(absolutePaths.concat(match.loader.include)));
         console.log("included projects:", match.loader.include);
       }
+
+      // Replace minifier
+      const idx = config.optimization.minimizer.findIndex(m => m.constructor.name === "TerserPlugin");
+      if (idx > -1) config.optimization.minimizer[idx] = new ESBuildMinifyPlugin({ target: "es2015", css: true });
+
       return config;
     }
   },
@@ -29,9 +35,6 @@ module.exports = {
     }
   },
   plugins: [
-    {
-      plugin: cracoEsbuild
-    },
     {
       plugin: cracoAlias,
       options: {

@@ -3,6 +3,9 @@
   "name": "Github DM",
   "description": "You can send a message to github user with a this extension!",
   "version": "0.1.0",
+  "background": {
+    "service_worker": "service-worker.js"
+  },
   "action": {
     "default_popup": "index.html",
     "default_title": "Open Github-DM"

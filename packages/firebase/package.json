@@ -1,0 +1,9 @@
+{
+  "name": "@github-dm/firebase",
+  "version": "0.1.0",
+  "main": "src",
+  "module": "src",
+  "dependencies": {
+    "firebase": "^9.6.6"
+  }
+}
