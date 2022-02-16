@@ -1,10 +1,12 @@
 // import { auth } from "./instance";
 // import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 
-export const signIn = async () => {
+export const signIn = async (): Promise<any> => {
   // const provider = new GithubAuthProvider();
   // await signInWithPopup(auth, provider);
-  chrome.runtime.sendMessage({ command: "sign-in" }, res => {
-    console.log("done!", res);
+  return new Promise(resolve => {
+    chrome.runtime.sendMessage({ command: "sign-in" }, (res: any) => {
+      resolve(res);
+    });
   });
 };

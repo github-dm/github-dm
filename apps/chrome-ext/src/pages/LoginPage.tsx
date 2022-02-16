@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ScreenHelmet, useNavigator } from "@karrotframe/navigator";
 import { Box, Button, DropdownButton, DropdownMenu } from "@primer/react";
 import { useColorScheme } from "@contexts/ColorScheme.context";
@@ -20,7 +20,7 @@ function LoginPage() {
         <Box display={"flex"} justifyContent={"center"}>
           <Button
             onClick={async () => {
-              await Auth.signIn();
+              console.log(await Auth.signIn());
               await push("/list");
             }}
           >
