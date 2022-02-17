@@ -4,7 +4,7 @@ const { getLoader, loaderByName } = require("@craco/craco");
 
 const path = require("path");
 
-const packages = ["messaging"];
+const packages = ["messaging", "firebase"];
 const apps = ["chrome-ext"];
 
 const absolutePaths = [
