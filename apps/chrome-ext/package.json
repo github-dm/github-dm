@@ -27,6 +27,8 @@
   "scripts": {
     "start": "craco start",
     "build": "INLINE_RUNTIME_CHUNK=false craco build",
+    "start:chrome": "craco start --chrome",
+    "build:chrome": "INLINE_RUNTIME_CHUNK=false craco build --chrome",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScreenHelmet, useNavigator } from "@karrotframe/navigator";
 import { Box, Button, DropdownButton, DropdownMenu } from "@primer/react";
 import { useColorScheme } from "@contexts/ColorScheme.context";
 import { ColorScheme } from "@services/color-scheme.service";
 import { MarkGithubIcon } from "@primer/octicons-react";
-import { Auth } from "@github-dm/firebase";
 import Page from "@components/Page";
+import AuthModule from "../modules/auth.module";
 
 function LoginPage() {
   const { push } = useNavigator();
+
+  const [email, setEmail] = useState("email");
 
   return (
     <Page>
@@ -17,10 +19,12 @@ function LoginPage() {
         <Box display={"flex"} flex={1} justifyContent={"flex-end"}>
           <SchemeSelector />
         </Box>
+        <p>User Email: {email}</p>
         <Box display={"flex"} justifyContent={"center"}>
           <Button
             onClick={async () => {
-              console.log(await Auth.signIn());
+              const u = await AuthModule.signIn();
+              setEmail(u.user.email ?? "none");
               await push("/list");
             }}
           >

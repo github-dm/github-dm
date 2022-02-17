@@ -15,6 +15,12 @@ const absolutePaths = [
 module.exports = {
   webpack: {
     configure: config => {
+      const [, , env] = process.argv;
+      if (env === "--chrome") {
+        config.resolve.extensions.unshift(".chrome.ts");
+        config.resolve.extensions.unshift(".chrome.tsx");
+      }
+
       // Inject monorepo packages
       const { isFound, match } = getLoader(config, loaderByName("babel-loader"));
       if (isFound) {
