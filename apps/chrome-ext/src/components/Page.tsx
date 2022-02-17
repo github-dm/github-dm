@@ -1,12 +1,24 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Box } from "@primer/react";
 
-const Page: React.FC = ({ children }) => {
+type Props = {
+  children: ReactNode;
+  className?: string;
+  [x: string]: any;
+};
+export const Page: React.FC<Props> = ({ children, className, ...rest }: Props) => {
   return (
-    <Box className={"h-full w-full"} as={"main"} flex={1}>
+    <Box
+      sx={{
+        padding: 2,
+        bg: "canvas.default",
+        height: "100%",
+        boxSizing: "border-box"
+      }}
+      {...rest}
+      className={className}
+    >
       {children}
     </Box>
   );
 };
-
-export default Page;
