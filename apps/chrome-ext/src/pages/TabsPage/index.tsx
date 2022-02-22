@@ -23,15 +23,7 @@ const tabs = [
 
 export default function MainTabsPage() {
   const [activeTabKey, setActiveTabKey] = React.useState("CHAT_LIST");
-  return (
-    <LeftTabs
-      activeTabKey={activeTabKey}
-      tabs={tabs}
-      onTabChange={key => {
-        setActiveTabKey(key);
-      }}
-    />
-  );
+  return <LeftTabs activeTabKey={activeTabKey} tabs={tabs} onTabChange={setActiveTabKey} />;
 }
 
 const LeftTabs = styled(Tabs)`

@@ -1,7 +1,7 @@
 import React from "react";
 import { Avatar, SubNav, Box, Text, ButtonInvisible } from "@primer/react";
 import { useColorScheme } from "@contexts/ColorScheme.context";
-import { ColorScheme } from "@services/color-scheme.service";
+import { ColorScheme } from "@services/ColorScheme.service";
 import { Page } from "@components";
 
 const userID = "ne-eun";
@@ -75,7 +75,6 @@ const SchemeSelector: React.FC = () => {
     }
   ];
 
-  console.log(colorMode);
   return (
     <SubNav aria-label="Main">
       <SubNav.Links sx={{ cursor: "pointer" }}>
