@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { ScreenHelmet, useNavigator } from "@karrotframe/navigator";
 import { Box, Button, DropdownButton, DropdownMenu } from "@primer/react";
-import { useColorScheme } from "@contexts/ColorScheme.context";
-import { ColorScheme } from "@services/color-scheme.service";
 import { MarkGithubIcon } from "@primer/octicons-react";
-import Page from "@components/Page";
+import { useColorScheme } from "@contexts/ColorScheme.context";
+import { ColorScheme } from "@services/ColorScheme.service";
 import AuthModule from "../modules/auth.module";
+import { Page } from "@components";
 
 function LoginPage() {
   const { push } = useNavigator();

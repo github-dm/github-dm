@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import ColorSchemeService, { ColorScheme } from "@services/color-scheme.service";
+import ColorSchemeService, { ColorScheme } from "@services/ColorScheme.service";
 
 type ContextType = {
   colorMode: { scheme: ColorScheme; systemEnabled: boolean };
