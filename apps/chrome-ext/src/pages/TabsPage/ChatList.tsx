@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigator } from "@karrotframe/navigator";
-import { Box, Avatar, Text, ButtonInvisible, Autocomplete } from "@primer/react";
+import { Box, Avatar, Text, ButtonInvisible } from "@primer/react";
 import { PlusIcon } from "@primer/octicons-react";
 import { Page } from "@components";
 
