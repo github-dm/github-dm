@@ -5,7 +5,11 @@
 html,
 body,
 #root {
-  height: 100%;
+  width: 100%;
   min-width: 380px;
   min-height: 600px;
+}
+
+*::-webkit-scrollbar {
+  background-color: transparent;
 }
