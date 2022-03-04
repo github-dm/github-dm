@@ -4,7 +4,7 @@ import { Page } from "@components";
 
 function ChatPage() {
   const { push } = useNavigator();
-  let { targetUser } = useParams<{ targetUser: string }>();
+  const { targetUser } = useParams<{ targetUser: string }>();
   return (
     <Page>
       <ScreenHelmet title={targetUser} />
