@@ -13,7 +13,7 @@ const App: React.FC = () => {
     <ColorSchemeProvider>
       {({ scheme, systemEnabled }) => (
         <ThemeProvider colorMode={systemEnabled ? "auto" : scheme === "light" ? "day" : "night"}>
-          <Navigator theme="Cupertino">
+          <Navigator className="navigator" theme="Cupertino">
             <Screen path="/login" component={LoginPage} />
             <Screen path="/" component={MainTabsPage} />
             <Screen path="/chat">
