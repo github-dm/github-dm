@@ -16,9 +16,7 @@ const App: React.FC = () => {
           <Navigator className="navigator" theme="Cupertino">
             <Screen path="/login" component={LoginPage} />
             <Screen path="/" component={MainTabsPage} />
-            <Screen path="/chat">
-              <ChatPage userName="ne-eun" />
-            </Screen>
+            <Screen path="/chat/:targetUser" component={ChatPage} />
           </Navigator>
         </ThemeProvider>
       )}

@@ -1,16 +1,13 @@
 import { Button } from "@primer/react";
-import { ScreenHelmet, useNavigator } from "@karrotframe/navigator";
+import { ScreenHelmet, useNavigator, useParams } from "@karrotframe/navigator";
 import { Page } from "@components";
 
-type Props = {
-  userName: string;
-};
-function ChatPage({ userName }: Props) {
+function ChatPage() {
   const { push } = useNavigator();
-
+  let { targetUser } = useParams<{ targetUser: string }>();
   return (
     <Page>
-      <ScreenHelmet title={userName} />
+      <ScreenHelmet title={targetUser} />
       <Button onClick={() => push("/login")}>로그인 가자</Button>
     </Page>
   );

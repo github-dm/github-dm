@@ -107,7 +107,7 @@ function ChatList() {
         }}
       >
         {data.map((item, index) => (
-          <ListRow key={index} id={item.id} lastChat={item.lastChat} onClick={() => push("/chat")} />
+          <ListRow key={index} id={item.id} lastChat={item.lastChat} onClick={() => push(`/chat/${item.id}`)} />
         ))}
       </Box>
     </Page>
