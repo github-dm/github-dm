@@ -5,6 +5,7 @@ import { ThemeProvider } from "@primer/react";
 import { ColorSchemeProvider } from "@contexts/ColorScheme.context";
 import LoginPage from "@pages/LoginPage";
 import MainTabsPage from "@pages/TabsPage";
+import ChatPage from "@pages/ChatPage";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -12,9 +13,10 @@ const App: React.FC = () => {
     <ColorSchemeProvider>
       {({ scheme, systemEnabled }) => (
         <ThemeProvider colorMode={systemEnabled ? "auto" : scheme === "light" ? "day" : "night"}>
-          <Navigator theme="Cupertino">
+          <Navigator className="navigator" theme="Cupertino">
             <Screen path="/login" component={LoginPage} />
             <Screen path="/" component={MainTabsPage} />
+            <Screen path="/chat/:targetUser" component={ChatPage} />
           </Navigator>
         </ThemeProvider>
       )}
